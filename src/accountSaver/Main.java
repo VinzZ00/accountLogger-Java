@@ -7,8 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import Frame.addAccount;
 import Frame.executeLogin;
@@ -18,34 +24,35 @@ import Frame.executeLogin;
 public class Main extends JFrame {
 
 	
-	JTabbedPane tp = new JTabbedPane();
+//	ChromeOptions options = new ChromeOptions()
+////			.addPreference("browser.startup.page", 0)
+////		     .addPreference("browser.startup.homepage", "https://www.google.co.uk")
+//		     .setAcceptInsecureCerts(true)
+//		     .setHeadless(true);
+	 
 	
+	 JTabbedPane tp = new JTabbedPane();
+			
 	public Main() {
+		 
+		
 
-			tp.add(new executeLogin(), "Execute Login");
+		
+		tp.add(new executeLogin(), "Execute Login");
 			tp.add(new addAccount(), "Add new account");
 			
-//		JButton	test = new JButton("Change");
-//		test.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent arg0) {
-//				// TODO Auto-generated method stub
-//				refresh();
-//			}
-//		});
-			
-		tp.addChangeListener(new ChangeListener() {
+		JButton	refresh = new JButton("Change");
+		refresh.addActionListener(new ActionListener() {
 			
 			@Override
-			public void stateChanged(ChangeEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				refresh();
 			}
 		});
 			
 		add(tp, BorderLayout.CENTER);
-//		add(test, BorderLayout.SOUTH);
+		add(refresh, BorderLayout.SOUTH);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -59,6 +66,7 @@ public class Main extends JFrame {
 		this.remove(tp);
 		
 		tp.removeAll();
+		
 		tp.add(new executeLogin(), "Execute Login");
 		tp.add(new addAccount(), "Add new account");
 		tp.repaint();

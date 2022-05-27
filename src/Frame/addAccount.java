@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Vector;
 
+import javax.security.auth.Refreshable;
+import javax.security.auth.callback.CallbackHandler;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,8 +26,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import accountSaver.Main;
+import interfacePack.refreshCallback;
 
-public class addAccount extends JPanel implements ActionListener {
+
+public class addAccount extends JPanel implements ActionListener, refreshCallback {
 
 	Font defaultFont = new Font("Serif", Font.BOLD, 12);
 	Font titleFont = new Font("Serif", Font.BOLD, 30);
@@ -165,9 +169,22 @@ public class addAccount extends JPanel implements ActionListener {
 					e1.printStackTrace();
 				} 
 				
-				
+				change = true;
 			} else JOptionPane.showMessageDialog(null, "Failed to add the account", "Error", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+
+
+	@Override
+	public boolean change() {
+		boolean changed = false;
+		if (change) {
+			changed = true;
+			change = false;
+		}
+		// TODO Auto-generated method stub
+		return changed;
 	}
 	
 }

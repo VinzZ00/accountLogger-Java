@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import objectPack.account;
 import objectPack.facebook;
 import objectPack.twitter;
@@ -31,6 +34,8 @@ public class executeLogin extends JPanel implements ActionListener{
 	Vector<account> accountList = new Vector<account>();
 	Vector<String> comboBoxContent = new Vector<String>();
 	File file = new File(".\\accMemo.txt");
+	
+	
 	public executeLogin() {
 		this.setLayout(new BorderLayout());
 		// TODO Auto-generated constructor stub
@@ -97,6 +102,7 @@ public class executeLogin extends JPanel implements ActionListener{
 		center.add(emailsel);
 		
 		run = new JButton("Start");
+		run.addActionListener(this);
 		run.setEnabled(false);
 		
 		south = new JPanel(new GridLayout(2,1,0,10));
@@ -112,7 +118,24 @@ public class executeLogin extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getSource() == run) {
+			System.setProperty("webdriver.chrome.driver", ".\\chromedriver.exe");
+			WebDriver chrome = new ChromeDriver();
+			chrome.manage().window().maximize();
+			String url = null;
+			
+			int ind = emailsel.getSelectedIndex()-1;
+			if (accountList.get(ind) instanceof facebook ) {
+				facebook fb = (facebook) accountList.get(ind);
+				url = fb.url;
+			} else if (accountList.get(ind) instanceof twitter) {
+				twitter tw = (twitter) accountList.get(ind);
+				url = tw.url;
+			}
+			
+			chrome.get(url);
+			System.out.println(chrome.getCurrentUrl());
+		}
 	}
 
 }
