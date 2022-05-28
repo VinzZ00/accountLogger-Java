@@ -41,7 +41,7 @@ public class Main extends JFrame {
 		tp.add(new executeLogin(), "Execute Login");
 			tp.add(new addAccount(), "Add new account");
 			
-		JButton	refresh = new JButton("Change");
+		JButton	refresh = new JButton("Refresh");
 		refresh.addActionListener(new ActionListener() {
 			
 			@Override

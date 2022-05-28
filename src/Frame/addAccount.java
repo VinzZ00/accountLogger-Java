@@ -26,10 +26,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import accountSaver.Main;
-import interfacePack.refreshCallback;
 
 
-public class addAccount extends JPanel implements ActionListener, refreshCallback {
+public class addAccount extends JPanel implements ActionListener {
 
 	Font defaultFont = new Font("Serif", Font.BOLD, 12);
 	Font titleFont = new Font("Serif", Font.BOLD, 30);
@@ -43,7 +42,7 @@ public class addAccount extends JPanel implements ActionListener, refreshCallbac
 	JTextField idField, passField;
 	JButton submit;
 	
-	Vector<String> content = new Vector<String>();
+	
 	boolean change = false;
 	
 	public addAccount() {
@@ -128,18 +127,19 @@ public class addAccount extends JPanel implements ActionListener, refreshCallbac
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == submit) {
+			Vector<String> content = new Vector<String>();
 			int conf = JOptionPane.showConfirmDialog(null, "Are you sure to add this account data?", "Add Account Confirmation", JOptionPane.YES_NO_OPTION);
 			
 			if (conf == JOptionPane.YES_OPTION) {
 				File accMemo = new File(".\\accMemo.txt");
-				boolean available = true;
+				boolean unavailable = true;
 				try {
-					available = accMemo.createNewFile();
+					unavailable = accMemo.createNewFile();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				if (!available) {
+				if (!unavailable) {
 					Scanner read = null;
 					try {
 						read = new Scanner(accMemo);
@@ -151,9 +151,6 @@ public class addAccount extends JPanel implements ActionListener, refreshCallbac
 					while (read.hasNextLine()) {
 						content.add(read.nextLine());
 					}
-				}
-				for (String string : content) {
-					System.out.println(string);
 				}
 				String newContent = "";
 				for (String string : content) {
@@ -173,20 +170,6 @@ public class addAccount extends JPanel implements ActionListener, refreshCallbac
 			} else JOptionPane.showMessageDialog(null, "Failed to add the account", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-
-
-	@Override
-	public boolean change() {
-		boolean changed = false;
-		if (change) {
-			changed = true;
-			change = false;
-		}
-		// TODO Auto-generated method stub
-		return changed;
-	}
-	
 }
 
 
