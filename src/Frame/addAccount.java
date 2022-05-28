@@ -129,29 +129,31 @@ public class addAccount extends JPanel implements ActionListener {
 		if (e.getSource() == submit) {
 			Vector<String> content = new Vector<String>();
 			int conf = JOptionPane.showConfirmDialog(null, "Are you sure to add this account data?", "Add Account Confirmation", JOptionPane.YES_NO_OPTION);
-			
+			String path = "accMemo.txt";
 			if (conf == JOptionPane.YES_OPTION) {
-				File accMemo = new File(".\\accMemo.txt");
-				boolean unavailable = true;
-				try {
-					unavailable = accMemo.createNewFile();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				if (!unavailable) {
-					Scanner read = null;
-					try {
-						read = new Scanner(accMemo);
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				File accMemo = null;
+				accMemo = new File(path);
+				
+//				boolean unavailable = true;
+//				try {
+//					unavailable = accMemo.createNewFile();
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//					if () {
+						Scanner read = null;
+						try {
+							read = new Scanner(accMemo);
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 
-					while (read.hasNextLine()) {
-						content.add(read.nextLine());
-					}
-				}
+						while (read.hasNextLine()) {
+							content.add(read.nextLine());
+						}
+//					}
 				String newContent = "";
 				for (String string : content) {
 					newContent += String.format("%s\n", string);
