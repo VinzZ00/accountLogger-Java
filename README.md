@@ -14,4 +14,4 @@ after we click the start the java program will automate it self to open a chrome
 the program scope are auto login for facebook and twitter for now, we will keep improving to add a custom account type
 
 please support me by giving me more advice so I can keep on going, for each of you advice means alot for me :)
-# Happy-Coding
+# Cheers Happy-Coding
