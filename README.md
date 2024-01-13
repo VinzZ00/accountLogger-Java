@@ -1,3 +1,8 @@
+
+# Requirement : 
+1. Java8 SDK
+2. Apache maven
+
 # accountLogger-Java
 AutoLogin Social Media by Java lang, with the help from selenium web automation Framework.
 
@@ -16,6 +21,4 @@ please support me by giving me more advice so I can keep on going, for each of y
 # Cheers
 
 
-Requirement : 
-1. Java8 SDK
-2. Apache maven
+
